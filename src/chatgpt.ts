@@ -10,6 +10,11 @@ import {
   IAccount,
 } from "./interface.js";
 
+const currentDate = new Date().toISOString().split("T")[0];
+const PromptPrefix = `You are ChatGPT, a large language model trained by OpenAI. You answer as detailed as possiblei for each response (e.g. be verbose). It is very important that you answer as detailed as possible.
+Current date: ${currentDate}
+
+`; // TODO: config and dynamic date
 const ErrorCode2Message: Record<string, string> = {
   "503":
     "OpenAI 服务器繁忙，请稍后再试| The OpenAI server is busy, please try again later",
@@ -173,6 +178,7 @@ export class ChatGPTPool {
       } = await conversation.sendMessage(message, {
         conversationId,
         parentMessageId: messageId,
+        promptPrefix: PromptPrefix
       });
       // Update conversation information
       this.setConversation(talkid, newConversationId, newMessageId);
