@@ -322,3 +322,4 @@ config.yaml
 .vscode
 
 .DS_Store
+wechat-assistant.processed_ids.txt
