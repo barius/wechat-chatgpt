@@ -68,9 +68,9 @@ export class ChatGPTBot {
     talker: RoomInterface | ContactInterface,
     mesasge: string
   ): Promise<void> {
+    let message = mesasge + '\n- - - - - - - - - - - - - - -\n由于OpenAI限流，这条消息是使用ChatGPT的上一版模型GPT-3.5生成的';
     console.log(`trySay: ${mesasge}`);
     const messages: Array<string> = [];
-    let message = mesasge;
     while (message.length > SINGLE_MESSAGE_MAX_SIZE) {
       messages.push(message.slice(0, SINGLE_MESSAGE_MAX_SIZE));
       message = message.slice(SINGLE_MESSAGE_MAX_SIZE);
